@@ -5,14 +5,17 @@ import { images } from "../constants/constants";
 import CustomButton from "./components/CustomButton";
 import { StatusBar } from "expo-status-bar";
 import { Redirect, router } from "expo-router";
+import { useAuthContext } from "../context/AuthContext";
+
 export default function Page() {
+  const { isLoading, isLoggedIn } = useAuthContext();
+
+  if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
         <View className="w-full min-h-[85vh] h-full items-center justify-center px-4">
-          <Text className="text-3xl text-secondary-200 pt-4 font-bold">
-            Bleek
-          </Text>
+          <Text className="text-3xl text-secondary pt-4 font-bold">Bleek</Text>
           <Image
             source={images.cards}
             resizeMode="contain"
@@ -21,7 +24,7 @@ export default function Page() {
           <View className="relative pt-5">
             <Text className="text-3xl text-white text-center">
               Discover endless oppurtunities with{" "}
-              <Text className="text-secondary-200">Bleek</Text>
+              <Text className="text-secondary">Bleek</Text>
             </Text>
             <Image
               source={images.path}
