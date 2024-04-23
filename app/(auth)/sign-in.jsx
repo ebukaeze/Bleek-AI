@@ -15,14 +15,14 @@ const SignIn = () => {
     password: "",
   });
 
-  const [isSubmtting, setIsSubmtting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { email, password } = form;
 
   const submit = async () => {
     if (!email || !password) {
       Alert.alert("Empty Field", "please fill in all the fileds");
     }
-    setIsSubmtting(true);
+    setIsSubmitting(true);
 
     try {
       await signIn(email, password);
@@ -36,7 +36,7 @@ const SignIn = () => {
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setIsSubmtting(false);
+      setIsSubmitting(false);
     }
   };
   return (
@@ -64,7 +64,7 @@ const SignIn = () => {
             title="sign in"
             handlePress={submit}
             containerStyle="mt-7"
-            isLoading={isSubmtting}
+            isLoading={isSubmitting}
           />
           <View className="w-full gap-2 justify-center pt-5 flex-row">
             <Text className="text-base text-white">

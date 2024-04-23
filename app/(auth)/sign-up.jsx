@@ -15,17 +15,15 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-  const [isSubmtting, setIsSubmtting] = useState(false);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { isLoggedIn, setUser, setIsLoggedIn } = useAuthContext();
   const { username, email, password } = form;
 
   const submit = async () => {
-    const { isLoggedIn, setUser, setIsLoggedIn } = useAuthContext();
-
     if (!email || !password || !username) {
       Alert.alert("Missing Field", "Please fill in all the fields");
     }
-    setIsSubmtting(true);
+    setIsSubmitting(true);
     try {
       const result = await createUser(email, password, username);
 
@@ -38,7 +36,7 @@ const SignUp = () => {
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setIsSubmtting(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -73,7 +71,7 @@ const SignUp = () => {
             title="sign up"
             handlePress={submit}
             containerStyle="mt-7"
-            isLoading={isSubmtting}
+            isLoading={isSubmitting}
           />
           <View className="w-full gap-2 justify-center pt-5 flex-row">
             <Text className="text-base text-white">
