@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
-        if (res) {
+        if (res !== null) {
           setIsLoggedIn(true);
           setUser(res);
         } else {
