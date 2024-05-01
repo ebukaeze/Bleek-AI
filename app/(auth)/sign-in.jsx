@@ -26,13 +26,13 @@ const SignIn = () => {
 
     try {
       await signIn(email, password);
-      const result = getCurrentUser();
+      const result = await getCurrentUser();
 
       //set user to global state
       setUser(result);
       setIsLoggedIn(true);
       Alert.alert("Success", "user signed in successfully");
-      +router.replace("/home");
+      router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
