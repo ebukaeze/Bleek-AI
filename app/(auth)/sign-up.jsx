@@ -31,6 +31,7 @@ const SignUp = () => {
       setUser(result);
       setIsLoggedIn(true);
 
+      console.log(result);
       //navigate to home
       router.replace("/home");
     } catch (error) {

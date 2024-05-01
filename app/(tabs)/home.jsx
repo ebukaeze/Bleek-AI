@@ -7,10 +7,12 @@ import EmpyList from "../components/EmpyList";
 import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
 import VideoCard from "../components/VideoCard";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Home = () => {
   const { data: posts, isLoading, refetch } = useAppwrite(getAllPosts);
   const { data: latestVids } = useAppwrite(getLatestPosts);
+  const { user, setUser, isLoggedIn } = useAuthContext();
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -36,7 +38,7 @@ const Home = () => {
                   Welcome Back!
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
-                  Jigsawyer
+                  {user?.username}
                 </Text>
               </View>
               <View>
